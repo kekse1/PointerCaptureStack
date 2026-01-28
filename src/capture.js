@@ -36,13 +36,12 @@ const push = (_id, _target = null) => {
 };
 
 const pop = (_id, _target = null) => {
-	ignoreEvents = true;
-
 	if(!capture.MAP.has(_id))
 	{
 		return;
 	}
 
+	ignoreEvents = true;
 	const stack = capture.MAP.get(_id);
 	var remove, prev;
 	
