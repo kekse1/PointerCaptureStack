@@ -14,7 +14,7 @@ This README is still TODO!
 
 # Contact
 
-<img src="https://kekse.biz/github.php?override=github:pointercapturestack&draw&text=pointercapturestack@kekse.biz&angle=6&size=24px&fg=150,20,90&font=OpenSans&ro&readonly&h=64&v=16" />
+<img src="https://kekse.biz/github.php?override=github:pointercapturestack&draw&text=PointerCaptureStack@kekse.biz&angle=6&size=24px&fg=150,20,90&font=OpenSans&ro&readonly&h=64&v=16" />
 
 # Copyright and License
 The Copyright is [(c) Sebastian Kucharczyk](./COPYRIGHT.txt),
