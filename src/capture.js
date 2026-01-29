@@ -4,85 +4,85 @@
 */
 
 //
-const capture = window.PointerCapture = {};
-capture.MAP = new Map(); export default capture;
-
-//
+const MAP = new Map();
 var ignoreEvents = false;
 
 //
-const push = (_id, _target = null) => {
+const push = (_id, _target) => {
 	ignoreEvents = true;
 	var stack;
 
-	if(!capture.MAP.has(_id))
+	if(!MAP.has(_id))
 	{
-		capture.MAP.set(_id, stack = []);
+		MAP.set(_id, stack = []);
 	}
 	else
 	{
-		stack = capture.MAP.get(_id);
+		stack = MAP.get(_id);
 	}
 
-	const prev = stack[stack.length - 1];
-
-	if(prev)
+	if(stack[stack.length - 1] !== _target)
 	{
-		prev.releasePointerCapture(_id);
+		const prev = stack[stack.length - 1];
+
+		if(prev)
+		{
+			prev.releasePointerCapture(_id);
+		}
+
+		stack.push(_target);
 	}
 
-	stack.push(_target);
 	ignoreEvents = false;
 };
 
-const pop = (_id, _target = null) => {
-	if(!capture.MAP.has(_id))
+const pop = (_id, _target) => {
+	if(!MAP.has(_id))
 	{
 		return;
 	}
 
 	ignoreEvents = true;
-	const stack = capture.MAP.get(_id);
-	var remove, prev;
+	const stack = MAP.get(_id);
+	var remove, prev, index;
 	
 	if(_target)
 	{
+<<<<<<< HEAD
 		remove = stack[stack.lastIndexOf(_target)];
+=======
+		remove = stack[index = stack.indexOf(_target)];
+>>>>>>> 60a64e2fa4c9ad7dc6f45f18f19ff6f3ebd837db
 	}
 	else
 	{
-		remove = stack.pop();
+		remove = stack[index = (stack.length - 1)];
 	}
 
-	if(remove)
+	if(index > -1)
 	{
 		remove.releasePointerCapture(_id);
-		stack.remove(remove);
-	}
+		stack.splice(index, 1);
 
-	do
-	{
-		try
+		do
 		{
-			prev = stack[stack.length - 1];
-			if(prev) prev.setPointerCapture(_id);
-			else break;
+			try
+			{
+				prev = stack[stack.length - 1];
+				if(prev) prev.setPointerCapture(_id);
+				else break;
+			}
+			catch(_err)
+			{
+				prev = stack.pop();
+			}
 		}
-		catch(_err)
-		{
-			prev = stack.pop();
-		}
-
+		while(true);
+	
 		if(stack.length === 0)
 		{
-			break;
+			MAP.delete(_id);
 		}
-	}
-	while(true);
-	
-	if(stack.length === 0)
-	{
-		capture.MAP.delete(_id);
 	}
 
 	ignoreEvents = false;
@@ -107,13 +107,10 @@ const onLostPointerCapture = (_event) => {
 
 //
 setTimeout(() => {
-	window.on('gotpointercapture',
-		onGotPointerCapture,
-			{ passive: true });
-	window.on('lostpointercapture',
-		onLostPointerCapture,
-			{ passive: true });
-});
+	window.addEventListener('gotpointercapture',
+		onGotPointerCapture, { passive: true });
+	window.addEventListener('lostpointercapture',
+		onLostPointerCapture, { passive: true }); });
 
 //
 
