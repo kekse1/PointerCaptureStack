@@ -48,11 +48,7 @@ const pop = (_id, _target) => {
 	
 	if(_target)
 	{
-<<<<<<< HEAD
-		remove = stack[stack.lastIndexOf(_target)];
-=======
-		remove = stack[index = stack.indexOf(_target)];
->>>>>>> 60a64e2fa4c9ad7dc6f45f18f19ff6f3ebd837db
+		remove = stack[index = stack.lastIndexOf(_target)];
 	}
 	else
 	{
