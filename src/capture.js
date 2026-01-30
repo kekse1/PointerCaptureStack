@@ -25,7 +25,7 @@ const push = (_id, _target) => {
 	{
 		const prev = stack[stack.length - 1];
 
-		if(prev)
+		if(prev && prev.hasPointerCapture(_id))
 		{
 			prev.releasePointerCapture(_id);
 		}
@@ -57,7 +57,11 @@ const pop = (_id, _target) => {
 
 	if(index > -1)
 	{
-		remove.releasePointerCapture(_id);
+		if(remove.hasPointerCapture(_id))
+		{
+			remove.releasePointerCapture(_id);
+		}
+
 		stack.splice(index, 1);
 
 		do
@@ -65,8 +69,15 @@ const pop = (_id, _target) => {
 			try
 			{
 				prev = stack[stack.length - 1];
-				if(prev) prev.setPointerCapture(_id);
-				else break;
+
+				if(prev && !prev.hasPointerCapture(_id))
+				{
+					prev.setPointerCapture(_id);
+				}
+				else
+				{
+					break;
+				}
 			}
 			catch(_err)
 			{
