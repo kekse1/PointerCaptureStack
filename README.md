@@ -14,7 +14,7 @@ This README is still TODO!
 
 # Contact
 
-<img src="https://kekse.biz/github.php?override=github:pointercapturestack&draw&text=PointerCaptureStack@kekse.biz&angle=6&size=32pt&fg=150,20,90&font=OpenSans&ro&readonly&h=64&v=16" />
+<img src="https://kekse.biz/github.php?override=github:pointercapturestack&draw&text=PointerCaptureStack@kekse.biz&angle=6&size=28pt&fg=150,20,90&font=OpenSans&ro&readonly&h=64&v=16" />
 
 <br>
 
